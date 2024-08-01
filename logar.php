@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once './conn/conect.php';
 // Essa validação é quando acessa a url diretamente: localhost/app-login/logar.php
 if (empty($_POST)) {
@@ -22,8 +23,13 @@ if (checkComplexPass($pass)) :
         $sth->bindValue("usr_pass", MD5($pass));
         $sth->execute();
         if ($sth->rowCount() > 0) :
-            echo "Usuário Encontrado na Base de Dados";
+            // echo "Usuário Encontrado na Base de Dados";
+            $_SESSION['usr_email'] = $email;
+            header('Location: '.$base.'/admin/home.php');
         else :
+            if (isset($_SESSION['usr_email'])) {
+                unset($_SESSION['usr_email']);
+            }
             echo "Não existe o Usuário na Base de Dados";
         endif;
     } catch (PDOException $e) {

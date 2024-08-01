@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 $user = 'root';
 $pass = '';
 $testConnection = false;
