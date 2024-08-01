@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/04/2024 às 02:42
+-- Tempo de geração: 31/07/2024 às 15:38
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,9 +31,9 @@ USE `app-login`;
 
 CREATE TABLE `users` (
   `usr_id` int(11) NOT NULL,
-  `usr_name` varchar(30) NOT NULL,
-  `usr_email` varchar(30) NOT NULL,
-  `usr_pass` varchar(40) NOT NULL
+  `usr_name` varchar(60) NOT NULL,
+  `usr_email` varchar(60) NOT NULL,
+  `usr_pass` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,8 +41,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`usr_id`, `usr_name`, `usr_email`, `usr_pass`) VALUES
-(1, 'Nelci', 'nelcijunior@yahoo.com', '123'),
-(2, 'Maria', 'maria@yahoo.com', '321');
+(1, 'Nelci', 'nelcijunior@yahoo.com.br', 'd219cec415ea856529faa78413877602');
 
 --
 -- Índices para tabelas despejadas

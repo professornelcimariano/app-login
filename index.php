@@ -11,7 +11,7 @@
 <body>
 
 <?php
-    echo MD5('Senac#123');
+    echo MD5('Informatica#123');
 ?>
 
     <!-- <div class="logo">
