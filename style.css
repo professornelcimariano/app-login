@@ -54,3 +54,21 @@ p {
     text-align: center;
     font-size: 1.5em;
 }
+.password-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+}
+
+.toggle-password:hover {
+    color: #988d8d;
+}

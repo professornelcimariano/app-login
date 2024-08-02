@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -31,23 +32,27 @@
                 Senha
             </label>
             </br>
-            <input type="password" id="password" name="password" id="password" required>
+            <br>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required>
+                <i class="fas fa-eye toggle-password" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+            </div>
             </br>
             <input type="submit" value="Logar">
         </form>
     </div>
-    <!-- <a href="#" id="passView" onclick="togglePasswordVisibility()"> Ver Senha </a> -->
+    
     <script>
-        // let click = document.getElementById('passView');
+        let click = document.getElementById('passView');
 
-        // function togglePasswordVisibility() {
-        //     var passwordField = document.getElementById("password");
-        //     if (passwordField.type === "password") {
-        //         passwordField.type = "text";
-        //     } else {
-        //         passwordField.type = "password";
-        //     }
-        // }
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
     </script>
 </body>
 

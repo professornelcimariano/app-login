@@ -44,6 +44,7 @@ if (!isset($_SESSION['usr_email'])) {
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Pass</th>
+                        <th scope="col">Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +59,7 @@ if (!isset($_SESSION['usr_email'])) {
                             <td><?= $usr_name ?></td>
                             <td><?= $usr_email ?></td>
                             <td><?= $usr_pass ?></td>
+                            <td> <a href="<?= $base; ?>/admin/user/delete.php?id=<?= $usr_id; ?>"> Excluir </a> </td>
                         </tr>
                     <?php
                     endforeach;
@@ -67,6 +69,6 @@ if (!isset($_SESSION['usr_email'])) {
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
 </html>
