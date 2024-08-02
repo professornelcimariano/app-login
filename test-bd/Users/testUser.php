@@ -50,6 +50,6 @@ function selectAllUsers($pdo)
     print_r($data);
 }
 
-// echo "<h1> Seleciona todos os usuários </h1> ";
-// selectAllUsers($pdo);
-// echo "<hr>";
+echo "<h1> Seleciona todos os usuários </h1> ";
+selectAllUsers($pdo);
+echo "<hr>";
