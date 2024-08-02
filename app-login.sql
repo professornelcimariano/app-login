@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/07/2024 às 15:38
+-- Tempo de geração: 02/08/2024 às 19:33
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,42 +26,42 @@ USE `app-login`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `users`
+-- Estrutura para tabela `user`
 --
 
-CREATE TABLE `users` (
-  `usr_id` int(11) NOT NULL,
-  `usr_name` varchar(60) NOT NULL,
-  `usr_email` varchar(60) NOT NULL,
-  `usr_pass` varchar(60) NOT NULL
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `pass` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `users`
+-- Despejando dados para a tabela `user`
 --
 
-INSERT INTO `users` (`usr_id`, `usr_name`, `usr_email`, `usr_pass`) VALUES
-(1, 'Nelci', 'nelcijunior@yahoo.com.br', 'd219cec415ea856529faa78413877602');
+INSERT INTO `user` (`id`, `name`, `email`, `pass`) VALUES
+(1, 'Nelci', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `users`
+-- Índices de tabela `user`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`usr_id`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `users`
+-- AUTO_INCREMENT de tabela `user`
 --
-ALTER TABLE `users`
-  MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

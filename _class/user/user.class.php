@@ -1,11 +1,9 @@
 <?php
 
-<?php
-
 class User {
     private $pdo;
-    private $table = 'users'; // Nome da tabela
-    private $idField = 'usr_id'; // Nome do campo ID
+    private $table = 'user';
+   
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
@@ -31,7 +29,7 @@ class User {
 
     public function delete($id) {
         try {
-            $sql = "DELETE FROM $this->table WHERE $this->idField = :id";
+            $sql = "DELETE FROM $this->table WHERE id = :id";
             $sth = $this->pdo->prepare($sql);
             $sth->bindValue(':id', $id, PDO::PARAM_INT);
             $sth->execute();
@@ -53,7 +51,7 @@ class User {
 
     public function selectOne($id) {
         try {
-            $sql = "SELECT * FROM $this->table WHERE $this->idField = :id";
+            $sql = "SELECT * FROM $this->table WHERE id = :id";
             $sth = $this->pdo->prepare($sql);
             $sth->bindValue(':id', $id, PDO::PARAM_INT);
             $sth->execute();
@@ -71,7 +69,7 @@ class User {
                 $updates[] = "$key = :$key";
             }
             $setClause = implode(', ', $updates);
-            $sql = "UPDATE $this->table SET $setClause WHERE $this->idField = :id";
+            $sql = "UPDATE $this->table SET $setClause WHERE id = :id";
 
             $sth = $this->pdo->prepare($sql);
 
@@ -89,42 +87,28 @@ class User {
 ?>
 
 
-// uso
-
-// Cria uma instância da classe User
 /*
 $userModel = new User($pdo);
-*/
-// inserção
-/*
+
 $userData = [
     'usr_email' => 'davi@davi.com',
     'usr_name' => 'davi',
     'usr_pass' => 'Senac#123'
 ];
 $userModel->insert($userData);
-*/
-// deleção
-/*
+
 $userModel->delete(1);
-*/
-// seleção de todos os usuários
-/*
+
 $users = $userModel->selectAll();
 print_r($users);
-*/
-// seleção de um usuário específico
-/*
+
 $user = $userModel->selectOne(1);
 print_r($user);
-*/
-// atualização de um usuário
-/*
+
 $updateData = [
     'usr_email' => 'newemail@davi.com',
     'usr_name' => 'newname'
 ];
 $userModel->update(1, $updateData);
 
-echo "Operações realizadas com sucesso.";
 */

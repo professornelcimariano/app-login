@@ -15,7 +15,7 @@
             <a class="nav-link active" aria-current="page" href="<?= $base ?>/admin/home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $base ?>/admin/user/form.php">Usuários</a>
+            <a class="nav-link" href="<?= $base ?>/admin/user/">Usuários</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

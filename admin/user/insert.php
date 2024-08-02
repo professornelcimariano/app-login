@@ -1,15 +1,20 @@
 <?php
 include '../../conn/conect.php';
+include '../../_class/model.class.php';
+
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-$user = new User($pdo);
-$data = [
-    'usr_email' => $data['usr_name'],
-    'usr_name' => $data['usr_email'],
-    'usr_pass' => MD5($data['usr_pass'])
+$userData = [
+    'email' => $data['name'],
+    'name' => $data['email'],
+    'pass' => MD5($data['pass'])
 ];
-$userManager->insert($userData);
+$userModel = new Model($pdo, 'user');
+$userModel->insert($userData);
+
+
 
 /*
+//Modo de Insert 1
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 try {
     $sth = $pdo->prepare('insert into users (usr_name, usr_email, usr_pass) 

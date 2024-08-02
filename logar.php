@@ -18,17 +18,17 @@ $pass = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
 
 if (checkComplexPass($pass)) :
     try {
-        $sth = $pdo->prepare('select *from users where usr_email = :usr_email and usr_pass = :usr_pass ');
-        $sth->bindValue("usr_email", $email);
-        $sth->bindValue("usr_pass", MD5($pass));
+        $sth = $pdo->prepare('select *from user where email = :email and pass = :pass ');
+        $sth->bindValue("email", $email);
+        $sth->bindValue("pass", MD5($pass));
         $sth->execute();
         if ($sth->rowCount() > 0) :
             // echo "Usuário Encontrado na Base de Dados";
-            $_SESSION['usr_email'] = $email;
+            $_SESSION['email'] = $email;
             header('Location: '.$base.'/admin/home.php');
         else :
-            if (isset($_SESSION['usr_email'])) {
-                unset($_SESSION['usr_email']);
+            if (isset($_SESSION['email'])) {
+                unset($_SESSION['email']);
             }
             echo "Não existe o Usuário na Base de Dados";
         endif;
