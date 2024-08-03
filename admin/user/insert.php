@@ -4,13 +4,13 @@ include '../../_class/model.class.php';
 
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 $userData = [
-    'email' => $data['name'],
-    'name' => $data['email'],
+    'name' => $data['name'],
+    'email' => $data['email'],
     'pass' => MD5($data['pass'])
 ];
 $userModel = new Model($pdo, 'user');
 $userModel->insert($userData);
-
+header("Location: ".$base."/admin/user");
 
 
 /*

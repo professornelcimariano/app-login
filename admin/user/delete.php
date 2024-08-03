@@ -1,10 +1,11 @@
 <?php
 include '../../conn/conect.php';
+include '../../_class/model.class.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_DEFAULT);
-$user = new User($pdo);
-$User->delete(1);
-header("Location: ".$base."/admin/user/form.php");
+$userModel = new Model($pdo, 'user');
+$userModel->delete($id);
+header("Location: ".$base."/admin/user");
 
 /*
 $sth = $pdo->prepare("DELETE from users where usr_id = :usr_id");

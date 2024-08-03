@@ -15,7 +15,7 @@ if (!isset($_SESSION['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Icons --> 
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
@@ -25,30 +25,38 @@ if (!isset($_SESSION['email'])) {
     ?>
     <div class="container">
         <div class="row">
-            <div class="mb-3">
-                <h2 class="fs-2">Cadastro de Usuários</h2>
+            <div class="col-12">
+                <h2 class="fs-2"><i class="bi bi-person-fill"></i> Cadastro de Usuários</h2>
                 <hr>
-                <form action="insert.php" method="post">
-                    <label class="form-label">Nome</label>
-                    <input class="form-control" type="text" name="usr_name">
-                    <label class="form-label">E-mail</label>
-                    <input class="form-control" type="text" name="usr_email">
-                    <label class="form-label">Senha</label>
-                    <input class="form-control" type="text" name="usr_pass">
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary m-3">Cadastrar</button>
+                <form action="insert.php" method="post" class="d-flex flex-column">
+                    <div class="form-group">
+                        <label class="form-label"> <i class="bi bi-bar-chart-fill"></i> Nome</label>
+                        <input class="form-control" type="text" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"> <i class="bi bi-envelope-plus"></i> E-mail</label>
+                        <input class="form-control" type="text" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"> <i class="bi bi-lock-fill"></i> Senha</label>
+                        <input class="form-control" type="text" name="pass">
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="submit" class="btn btn-success m-2">Cadastrar</button>
+                        <button type="reset" class="btn btn-secondary m-2">Limpar</button>
                     </div>
                 </form>
             </div>
+            <hr>
 
-            <table class="table table-striped"">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Pass</th>
-                        <th scope="col">Excluir</th>
+                        <th scope="col" class="d-none d-md-table-cell">E-mail</th>
+                        <th scope="col" class="d-none d-md-table-cell">Pass</th>
+                        <th scope="col">Edição</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,14 +64,14 @@ if (!isset($_SESSION['email'])) {
                     try {
                         $Model = new Model($pdo, 'user');
                         $data = $Model->selectAll();
-                        foreach ($data as $registers):
+                        foreach ($data as $registers) :
                             extract($registers);
                     ?>
                             <tr>
                                 <th scope="row"><?= $id ?></th>
                                 <td><?= $name ?></td>
-                                <td><?= $email ?></td>
-                                <td><?= $pass ?></td>
+                                <td class="d-none d-md-table-cell"><?= $email ?></td>
+                                <td class="d-none d-md-table-cell"><?= $pass ?></td>
                                 <td> <a href="<?= $base; ?>/admin/user/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> </td>
                             </tr>
                     <?php

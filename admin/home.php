@@ -37,22 +37,25 @@ if (!isset($_SESSION['email'])) {
         <div class="row">
             <!-- Cards -->
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-white bg-primary">
-                    <div class="card-body">
-                        <i class="bi bi-person card-icon"></i>
-                        <h5 class="card-title">Usuários</h5>
-                        <p class="card-text">Total de usuários registrados</p>
-                        <hr>
-                        <h2 class="display-5">
-                            <?php
-                            $userModel = new Model($pdo, 'user');
-                            $totalUsers = $userModel->count();
-                            echo $totalUsers;
-                            ?>
-                        </h2>
+                <a href="<?= $base ?>/admin/user/">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <i class="bi bi-person card-icon"></i>
+                            <h5 class="card-title">Usuários</h5>
+                            <p class="card-text">Total de usuários registrados</p>
+                            <hr>
+                            <h2 class="display-5">
+                                <?php
+                                $userModel = new Model($pdo, 'user');
+                                $totalUsers = $userModel->count();
+                                echo $totalUsers;
+                                ?>
+                            </h2>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
+
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card text-white bg-success">
                     <div class="card-body">
@@ -119,6 +122,7 @@ if (!isset($_SESSION['email'])) {
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
