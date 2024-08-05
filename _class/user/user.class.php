@@ -1,114 +1,70 @@
 <?php
 
-class User {
-    private $pdo;
-    private $table = 'user';
-   
+require_once '../Model.php';  // Ajuste o caminho conforme a estrutura do seu projeto
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+class User extends Model
+{
+    private $table = 'users';  // Nome da tabela
+    private $nameField = 'name';  // Nome do campo de nome
+
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo, $this->table);
     }
 
-    public function insert(array $userData) {
+    public function insert(array $data, $file)
+    {
+        // Verifica se o nome já existe
+        if (isset($data[$this->nameField]) && $this->nameExists($data[$this->nameField])) {
+            throw new Exception("O nome '{$data[$this->nameField]}' já existe.");
+        }
+
+        // Adiciona o slug automaticamente
+        if (isset($data[$this->nameField])) {
+            $data['slug'] = $this->generateSlug($data[$this->nameField]);
+        }
+
+        // Lida com o upload da imagem
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $imageName = $this->uploadImage($file);
+            $data['image'] = $imageName;
+        }
+
+        // Chama o método insert da classe pai
+        parent::insert($data);
+    }
+
+    private function nameExists($name)
+    {
         try {
-            $columns = implode(', ', array_keys($userData));
-            $placeholders = ':' . implode(', :', array_keys($userData));
-            $sql = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
-
+            $sql = "SELECT COUNT(*) FROM $this->table WHERE $this->nameField = :name";
             $sth = $this->pdo->prepare($sql);
-
-            foreach ($userData as $key => $value) {
-                $sth->bindValue(":$key", $value);
-            }
-
+            $sth->bindValue(':name', $name);
             $sth->execute();
+            return $sth->fetchColumn() > 0;
         } catch (PDOException $e) {
             echo 'Database error: ' . $e->getMessage();
         }
+        return false;
     }
 
-    public function delete($id) {
-        try {
-            $sql = "DELETE FROM $this->table WHERE id = :id";
-            $sth = $this->pdo->prepare($sql);
-            $sth->bindValue(':id', $id, PDO::PARAM_INT);
-            $sth->execute();
-        } catch (PDOException $e) {
-            echo 'Database error: ' . $e->getMessage();
-        }
+    private function generateSlug($name)
+    {
+        // Função para gerar slug a partir do nome
+        return strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $name));
     }
 
-    public function selectAll() {
-        try {
-            $sql = "SELECT * FROM $this->table";
-            $sth = $this->pdo->query($sql);
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            echo 'Database error: ' . $e->getMessage();
-        }
-        return [];
-    }
+    private function uploadImage($file)
+    {
+        $uploadDir = '../uploads/';  // Diretório onde as imagens serão salvas
+        $fileName = basename($file['name']);
+        $uploadFile = $uploadDir . $fileName;
 
-    public function selectOne($id) {
-        try {
-            $sql = "SELECT * FROM $this->table WHERE id = :id";
-            $sth = $this->pdo->prepare($sql);
-            $sth->bindValue(':id', $id, PDO::PARAM_INT);
-            $sth->execute();
-            return $sth->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            echo 'Database error: ' . $e->getMessage();
-        }
-        return null;
-    }
-
-    public function update($id, array $userData) {
-        try {
-            $updates = [];
-            foreach ($userData as $key => $value) {
-                $updates[] = "$key = :$key";
-            }
-            $setClause = implode(', ', $updates);
-            $sql = "UPDATE $this->table SET $setClause WHERE id = :id";
-
-            $sth = $this->pdo->prepare($sql);
-
-            foreach ($userData as $key => $value) {
-                $sth->bindValue(":$key", $value);
-            }
-            $sth->bindValue(':id', $id, PDO::PARAM_INT);
-
-            $sth->execute();
-        } catch (PDOException $e) {
-            echo 'Database error: ' . $e->getMessage();
+        if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+            return $fileName;
+        } else {
+            throw new Exception("Erro ao fazer upload da imagem.");
         }
     }
 }
 ?>
-
-
-/*
-$userModel = new User($pdo);
-
-$userData = [
-    'usr_email' => 'davi@davi.com',
-    'usr_name' => 'davi',
-    'usr_pass' => 'Senac#123'
-];
-$userModel->insert($userData);
-
-$userModel->delete(1);
-
-$users = $userModel->selectAll();
-print_r($users);
-
-$user = $userModel->selectOne(1);
-print_r($user);
-
-$updateData = [
-    'usr_email' => 'newemail@davi.com',
-    'usr_name' => 'newname'
-];
-$userModel->update(1, $updateData);
-
-*/

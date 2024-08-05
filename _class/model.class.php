@@ -163,14 +163,6 @@ class Model
             echo 'Connection failed: ' . $e->getMessage();
         }
 
-
-
-
-
-
-
-
-
     $user = $userModel->selectOne(1);
     print_r($user);
 
