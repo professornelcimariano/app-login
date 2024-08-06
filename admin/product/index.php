@@ -30,21 +30,10 @@ if (!isset($_SESSION['email'])) {
                 <hr>
                 <form action="insert.php" method="post" enctype="multipart/form-data" class="d-flex flex-column">
                     <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-bar-chart-fill"></i> Nome</label>
+                        <label class="form-label"> <i class="bi bi-bar-chart-fill"></i> Nome </label>
                         <input class="form-control" type="text" name="name">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-envelope-plus"></i> E-mail</label>
-                        <input class="form-control" type="text" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-lock-fill"></i> Senha</label>
-                        <input class="form-control" type="text" name="pass">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-photo-fill"></i> Foto </label>
-                        <input class="form-control" type="file" id="image" name="image">
-                    </div>
+                  
                     <div class="d-flex justify-content-end mt-3">
                         <button type="submit" class="btn btn-success m-2">Cadastrar</button>
                         <button type="reset" class="btn btn-secondary m-2">Limpar</button>
@@ -58,15 +47,13 @@ if (!isset($_SESSION['email'])) {
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
-                        <th scope="col" class="d-none d-md-table-cell">E-mail</th>
-                        <th scope="col" class="d-none d-md-table-cell">Pass</th>
                         <th scope="col">Edição</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     try {
-                        $Model = new Model($pdo, 'user');
+                        $Model = new Model($pdo, 'product');
                         $data = $Model->selectAll();
                         foreach ($data as $registers) :
                             extract($registers);
@@ -74,9 +61,7 @@ if (!isset($_SESSION['email'])) {
                             <tr>
                                 <th scope="row"><?= $id ?></th>
                                 <td><?= $name ?></td>
-                                <td class="d-none d-md-table-cell"><?= $email ?></td>
-                                <td class="d-none d-md-table-cell"><?= $pass ?></td>
-                                <td> <a href="<?= $base; ?>/admin/user/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> </td>
+                                <td> <a href="<?= $base; ?>/admin/product/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> </td>
                             </tr>
                     <?php
                         endforeach;

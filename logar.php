@@ -20,6 +20,7 @@ if (checkComplexPass($pass)) :
     try {
         $sth = $pdo->prepare('select *from user where email = :email and pass = :pass ');
         $sth->bindValue("email", $email);
+        // $sth->bindValue("pass", MD5($pass));
         $sth->bindValue("pass", MD5($pass));
         $sth->execute();
         if ($sth->rowCount() > 0) :

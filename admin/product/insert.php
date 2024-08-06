@@ -1,19 +1,15 @@
 <?php
 include '../../conn/conect.php';
 include '../../_class/model.class.php';
-include '../../_class/user/user.class.php';
 
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-$userData = [
-    'name' => $data['name'],
-    'email' => $data['email'],
-    'pass' => MD5($data['pass'])
+$productData = [
+    'name' => $data['name']
 ];
-// $userModel = new Model($pdo, 'user');
-// $userModel->insert($userData);
-$user = new User($pdo);
-$user->insertUser($userData, $_FILES['image']);
-header("Location: " . $base . "/admin/user");
+$productModel = new Model($pdo, 'product');
+$productModel->insert($productData);
+
+header("Location: " . $base . "/admin/product");
 
 /*
 //Modo de Insert 1
