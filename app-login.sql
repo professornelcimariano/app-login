@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/08/2024 às 02:58
+-- Tempo de geração: 07/08/2024 às 03:31
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -26,6 +26,30 @@ USE `app-login`;
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `car`
+--
+
+CREATE TABLE `car` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `car`
+--
+
+INSERT INTO `car` (`id`, `name`, `description`, `status`) VALUES
+(9, 'Gol', 'Gol 2020 - v7', 1),
+(10, 'Produto 1', 'Gol 2020 - v7', 1),
+(11, 'NELCI MARIANO', 'Gol 2019 - v5', 1),
+(12, 'Produto 1', 'Gol 2019 - v5', 0),
+(13, 'NELCI MARIANO', 'Gol 2019 - v5', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `product`
 --
 
@@ -34,6 +58,32 @@ CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `price`) VALUES
+(7, 'Produto 3', 0.00);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `suplier`
+--
+
+CREATE TABLE `suplier` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `suplier`
+--
+
+INSERT INTO `suplier` (`id`, `name`, `description`) VALUES
+(3, 'NELCI MARIANO', 'Gol 2019 - v5');
 
 -- --------------------------------------------------------
 
@@ -47,30 +97,43 @@ CREATE TABLE `user` (
   `email` varchar(30) NOT NULL,
   `pass` varchar(40) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `pass`, `slug`, `image`) VALUES
-(8, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', ''),
-(12, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', ''),
-(13, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', 'user.png'),
-(14, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', 'user.png'),
-(15, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png'),
-(16, 'NELCI MARIANO P', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano-p', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png'),
-(17, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano-1', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png');
+INSERT INTO `user` (`id`, `name`, `email`, `pass`, `slug`, `image`, `status`) VALUES
+(8, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', '', 0),
+(12, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', '', 0),
+(13, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', 'user.png', 0),
+(14, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', 'user.png', 0),
+(15, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png', 0),
+(16, 'NELCI MARIANO P', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano-p', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png', 0),
+(17, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano-1', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png', 0);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
+-- Índices de tabela `car`
+--
+ALTER TABLE `car`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `product`
 --
 ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `suplier`
+--
+ALTER TABLE `suplier`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -84,9 +147,21 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de tabela `car`
+--
+ALTER TABLE `car`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT de tabela `product`
 --
 ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `suplier`
+--
+ALTER TABLE `suplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
