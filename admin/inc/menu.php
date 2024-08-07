@@ -34,6 +34,18 @@
               Produtos
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $base ?>/admin/car/">
+              <i class="bi bi-person-fill"></i>
+              Carros
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $base ?>/admin/suplier/">
+              <i class="bi bi-person-fill"></i>
+              Fornecedores
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-airplane-fill"></i> Sistema
