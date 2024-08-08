@@ -1,48 +1,35 @@
 <?php
-include '../../conn/conect.php';
-include '../../_class/model.class.php';
-session_start();
-if (!isset($_SESSION['email'])) {
-    header('Location: ' . $base);
-    die();
-}
+include_once '../inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <?php
+    $model = 'user';
+    $dir = 'user';
+    $namePage = 'Cadastro de Usuários';
     include '../inc/menu.php';
     ?>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="fs-2"><i class="bi bi-person-fill"></i> Cadastro de Usuários</h2>
+                <h2 class="fs-2"><i class="bi bi-bar-chart-fill"></i> <?= $namePage ?></h2>
                 <hr>
                 <form action="insert.php" method="post" enctype="multipart/form-data" class="d-flex flex-column">
                     <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-bar-chart-fill"></i> Nome</label>
+                        <label class="form-label"> Nome</label>
                         <input class="form-control" type="text" name="name">
                     </div>
                     <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-envelope-plus"></i> E-mail</label>
+                        <label class="form-label"> E-mail</label>
                         <input class="form-control" type="text" name="email">
                     </div>
                     <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-lock-fill"></i> Senha</label>
+                        <label class="form-label"> Senha</label>
                         <input class="form-control" type="text" name="pass">
                     </div>
                     <div class="form-group">
-                        <label class="form-label"> <i class="bi bi-photo-fill"></i> Foto </label>
+                        <label class="form-label"> Foto </label>
                         <input class="form-control" type="file" id="image" name="image">
                     </div>
                     <div class="d-flex justify-content-end mt-3">
@@ -66,8 +53,8 @@ if (!isset($_SESSION['email'])) {
                 <tbody>
                     <?php
                     try {
-                        $Model = new Model($pdo, 'user');
-                        $data = $Model->selectAll();
+                        $model = new Model($pdo, $model);
+                        $data = $model->selectAll();
                         foreach ($data as $registers) :
                             extract($registers);
                     ?>
@@ -76,7 +63,11 @@ if (!isset($_SESSION['email'])) {
                                 <td><?= $name ?></td>
                                 <td class="d-none d-md-table-cell"><?= $email ?></td>
                                 <td class="d-none d-md-table-cell"><?= $pass ?></td>
-                                <td> <a href="<?= $base; ?>/admin/user/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> </td>
+                                <td>
+                                    <!-- <a href="<?= $base; ?>/admin/<?= $dir ?>/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a>  -->
+                                    <button class="btn btn-danger m-2 btn-delete" data-id="<?= $id; ?>">Excluir</button>
+                                    <a class="btn btn-primary m-2" href="<?= $base; ?>/admin/<?= $dir ?>/form-update.php?id=<?= $id; ?>"> Editar </a>
+                                </td>
                             </tr>
                     <?php
                         endforeach;
@@ -89,7 +80,33 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.btn-delete').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var itemId = this.getAttribute('data-id');
+                var base = '<?= $base; ?>'; // URL base do PHP
+                var dir = '<?= $dir; ?>';
 
-</html>
+                Swal.fire({
+                    title: 'Exclusão de Registro!',
+                    text: "Confirma Exclusão deste ítem?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sim, excluir!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redireciona para a URL de exclusão
+                        window.location.href = base + '/admin/' + dir + '/delete.php?id=' + itemId;
+                    }
+                });
+            });
+        });
+    });
+</script>
+<?php
+include '../inc/footer.php';
+?>

@@ -1,14 +1,9 @@
 <?php
-include '../../conn/conect.php';
-include '../../_class/model.class.php';
+include_once '../inc/validation-session.php';
+$model = 'user';
+$dir = 'user';
 
-$id = filter_input(INPUT_GET, 'id', FILTER_DEFAULT);
-$userModel = new Model($pdo, 'user');
-$userModel->delete($id);
-header("Location: ".$base."/admin/user");
-
-/*
-$sth = $pdo->prepare("DELETE from users where usr_id = :usr_id");
-$sth->bindValue("usr_id", $id);
-$sth->execute();
-*/
+$id = filter_input(INPUT_GET, 'id', FILTER_DEFAULT); // Captura o id na url
+$model = new Model($pdo, $model); // Instância da class Model
+$model->delete($id); // Método delete da class Model
+header("Location: ".$base."/admin/".$dir); // Redireciona para a url informada

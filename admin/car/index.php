@@ -17,6 +17,7 @@ if (!isset($_SESSION['email'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- sweetalert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 </head>
@@ -74,7 +75,6 @@ if (!isset($_SESSION['email'])) {
                                     <!-- <a href="<?= $base; ?>/admin/car/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> -->
                                     <!-- Substitua o link de exclusão por um botão -->
                                     <button class="btn btn-danger m-2 btn-delete" data-id="<?= $id; ?>">Excluir</button>
-
                                     <a class="btn btn-primary m-2" href="<?= $base; ?>/admin/car/form-update.php?id=<?= $id; ?>"> Editar </a>
 
 
