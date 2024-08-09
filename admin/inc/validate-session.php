@@ -1,6 +1,5 @@
 <?php
-include '../../conn/conect.php';
-include '../../_class/model.class.php';
+include_once '../../conn/config.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header('Location: ' . $base);

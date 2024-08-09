@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/08/2024 às 03:31
+-- Tempo de geração: 09/08/2024 às 00:11
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `app-login`
+-- Banco de dados: `app-blog`
 --
-CREATE DATABASE IF NOT EXISTS `app-login` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `app-login`;
+CREATE DATABASE IF NOT EXISTS `app-blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `app-blog`;
 
 -- --------------------------------------------------------
 
@@ -41,11 +41,8 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`id`, `name`, `description`, `status`) VALUES
-(9, 'Gol', 'Gol 2020 - v7', 1),
-(10, 'Produto 1', 'Gol 2020 - v7', 1),
-(11, 'NELCI MARIANO', 'Gol 2019 - v5', 1),
-(12, 'Produto 1', 'Gol 2019 - v5', 0),
-(13, 'NELCI MARIANO', 'Gol 2019 - v5', 0);
+(16, 'NELCI MARIANO', 'qwer', 0),
+(17, 'Produto 1', '', 0);
 
 -- --------------------------------------------------------
 
@@ -106,10 +103,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `pass`, `slug`, `image`, `status`) VALUES
-(8, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', '', 0),
-(12, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', '', 0),
-(13, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', 'user.png', 0),
-(14, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', '', 'user.png', 0),
 (15, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png', 0),
 (16, 'NELCI MARIANO P', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano-p', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png', 0),
 (17, 'NELCI MARIANO', 'nelcijunior@yahoo.com.br', 'b22bc9ac1d796c451473e99fc06fd566', 'nelci-mariano-1', 'be277c77d242fc0d657b3492872b045e2879c3958c92c7fe2bdfe6342f73489b.png', 0);
@@ -150,7 +143,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de tabela `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `product`

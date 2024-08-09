@@ -1,6 +1,10 @@
 <?php
-include_once '../inc/validation-session.php';
+include_once '../../conn/config.php';
+include_once '../../conn/conect.php';
+include_once '../../_class/model.class.php';
 include_once '../../_class/user/user.class.php';
+include_once '../inc/validate-session.php';
+
 $model = 'user'; // Variável $model contém o nome do model
 $dir = 'user'; // Variável $dir contém o nome do diretório para redirecionamento
 

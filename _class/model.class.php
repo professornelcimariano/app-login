@@ -85,7 +85,7 @@ class Model
             }
             $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-            $sth->execute();
+            return $sth->execute();
         } catch (PDOException $e) {
             echo 'Database error: ' . $e->getMessage();
         }

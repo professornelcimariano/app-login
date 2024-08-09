@@ -1,5 +1,8 @@
 <?php
-include 'validation-session.php';
+include_once '../../conn/config.php';
+include_once '../../conn/conect.php';
+include_once '../../_class/model.class.php';
+include_once 'validate-session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
